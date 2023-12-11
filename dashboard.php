@@ -104,7 +104,7 @@ $connect->close();
 		  </div>
 
 		  <div class="cardContainer">
-		    <p> INR Total Revenue</p>
+		    <p> PKR Total Revenue</p>
 		  </div>
 		</div> 
 
