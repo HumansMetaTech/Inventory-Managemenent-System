@@ -77,9 +77,8 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <select class="form-control" id="brandName" name="brandName">
-				      	<option value="">~~SELECT~~</option>
 				      	<?php 
-				      	$sql = "SELECT product_id, product_name FROM product WHERE active = 1";
+				      	$sql = "SELECT name, price_list_name FROM `tabPrice List` ORDER BY price_list_name ASC";
 							$result = $connect->query($sql);
 
 							while($row = $result->fetch_array()) {
@@ -96,56 +95,8 @@
 				    <div class="col-sm-8">
 				      <input type="number" step="0.01"  class="form-control" id="rate" placeholder="0.00" name="rate" autocomplete="off">
 				    </div>
-	        </div> <!-- /form-group-->	     	        
-
-	        <div class="form-group">
-	        	<label for="brandName" class="col-sm-3 control-label">Brand Name: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <select class="form-control" id="brandName" name="brandName">
-				      	<option value="">~~SELECT~~</option>
-				      	<?php 
-				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1 AND brand_active = 1";
-							$result = $connect->query($sql);
-
-							while($row = $result->fetch_array()) {
-								echo "<option value='".$row[0]."'>".$row[1]."</option>";
-							}
-				      	?>
-				      </select>
-				    </div>
-	        </div> <!-- /form-group-->	
-
-	        <div class="form-group">
-	        	<label for="categoryName" class="col-sm-3 control-label">Category Name: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <select type="text" class="form-control" id="categoryName" placeholder="Product Name" name="categoryName" >
-				      	<option value="">~~SELECT~~</option>
-				      	<?php 
-				      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
-								$result = $connect->query($sql);
-
-								while($row = $result->fetch_array()) {
-									echo "<option value='".$row[0]."'>".$row[1]."</option>";
-								} // while
-								
-				      	?>
-				      </select>
-				    </div>
-	        </div> <!-- /form-group-->					        	         	       
-
-	        <div class="form-group">
-	        	<label for="productStatus" class="col-sm-3 control-label">Status: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <select class="form-control" id="productStatus" name="productStatus">
-				      	<option value="">~~SELECT~~</option>
-				      	<option value="1">Available</option>
-				      	<option value="2">Not Available</option>
-				      </select>
-				    </div>
-	        </div> <!-- /form-group-->	         	        
+	        </div> <!-- /form-group-->				        	         	       
+        	        
 	      </div> <!-- /modal-body -->
 	      
 	      <div class="modal-footer">

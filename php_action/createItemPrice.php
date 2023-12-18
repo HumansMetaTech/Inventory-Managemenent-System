@@ -9,7 +9,8 @@ if($_POST) {
 	$brandName = $_POST['brandName'];
   $brandStatus = $_POST['brandStatus']; 
 
-	$sql = "INSERT INTO brands (brand_name, brand_active, brand_status) VALUES ('$brandName', '$brandStatus', 1)";
+	$sql = "INSERT INTO `tabitem price`(`modified_by`, `owner`, `docstatus`, `item_code`, `item_name`, `price_list_rate`) VALUES
+	 ('$brandName', '$brandStatus', 1)";
 
 	if($connect->query($sql) === TRUE) {
 	 	$valid['success'] = true;
