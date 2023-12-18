@@ -23,14 +23,11 @@
 				
 				<table class="table" id="manageProductTable">
 					<thead>
-						<tr>
-							<th style="width:10%;">Photo</th>							
-							<th>Product Name</th>
-							<th>Rate</th>							
-							<th>Quantity</th>
-							<th>Brand</th>
-							<th>Category</th>
-							<th>Status</th>
+						<tr>					
+							<th>Item Code</th>
+							<th>Item Name</th>
+							<th>Price List Rate</th>
+							<th>Price List Rate</th>
 							<th style="width:15%;">Options</th>
 						</tr>
 					</thead>
@@ -43,12 +40,11 @@
 </div> <!-- /row -->
 
 
-<!-- add product -->
-<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">
+<!-- add Item Price -->
+<div class="modal fade" id="addItemPriceModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-
-    	<form class="form-horizontal" id="submitProductForm" action="php_action/createProduct.php" method="POST" enctype="multipart/form-data">
+    	<form class="form-horizontal" id="submitProductForm" action="php_action/createItemPrice.php" method="POST" enctype="multipart/form-data">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> New Item Price</h4>
