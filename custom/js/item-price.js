@@ -5,7 +5,7 @@ $(document).ready(function () {
 	$('#navProduct').addClass('active');
 	// manage product data table
 	manageProductTable = $('#manageProductTable').DataTable({
-		'ajax': 'php_action/fetchProduct.php',
+		'ajax': 'php_action/fetchItemPrice.php',
 		'order': []
 	});
 
@@ -17,36 +17,15 @@ $(document).ready(function () {
 		// remove text-error 
 		$(".text-danger").remove();
 		// remove from-group error
-		$(".form-group").removeClass('has-error').removeClass('has-success');
-
-		$("#productImage").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 2500,
-			showClose: false,
-			showCaption: false,
-			browseLabel: '',
-			removeLabel: '',
-			browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-			removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-			removeTitle: 'Cancel or reset changes',
-			elErrorContainer: '#kv-avatar-errors-1',
-			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="assests/images/photo_default.png" alt="Profile Image" style="width:100%;">',
-			layoutTemplates: { main2: '{preview} {remove} {browse}' },
-			allowedFileExtensions: ["jpg", "png", "gif", "JPG", "PNG", "GIF"]
-		});
+		$(".form-group").removeClass('has-error').removeClass('has-success');		
 
 		// submit product form
-		$("#submitProductForm").unbind('submit').bind('submit', function () {
+		$("#frmItemPrice").unbind('submit').bind('submit', function () {
 
 			// form validation
-			var productImage = $("#productImage").val();
-			var productName = $("#productName").val();
-			var quantity = $("#quantity").val();
-			var rate = $("#rate").val();
-			var brandName = $("#brandName").val();
-			var categoryName = $("#categoryName").val();
-			var productStatus = $("#productStatus").val();
+			var item = $("#cmbItem").val();
+			var price_list = $("#cmbPriceList").val();
+			var price_list_rate = $("#txtRate").val();
 
 			// if(productImage == "") {
 			// 	$("#productImage").closest('.center-block').after('<p class="text-danger">Product Image field is required</p>');
@@ -58,8 +37,8 @@ $(document).ready(function () {
 			// 	$("#productImage").closest('.form-group').addClass('has-success');	  	
 			// }	// /else
 
-			if (productName == "") {
-				$("#productName").after('<p class="text-danger">Product Name field is required</p>');
+			if (item == "") {
+				$("#productName").after('<p class="text-danger">Please Select Item from the list</p>');
 				$('#productName').closest('.form-group').addClass('has-error');
 			} else {
 				// remov error text field
@@ -68,8 +47,8 @@ $(document).ready(function () {
 				$("#productName").closest('.form-group').addClass('has-success');
 			}	// /else
 
-			if (quantity == "") {
-				$("#quantity").after('<p class="text-danger">Quantity field is required</p>');
+			if (price_list == "") {
+				$("#quantity").after('<p class="text-danger">Price List is required</p>');
 				$('#quantity').closest('.form-group').addClass('has-error');
 			} else {
 				// remov error text field
@@ -78,8 +57,8 @@ $(document).ready(function () {
 				$("#quantity").closest('.form-group').addClass('has-success');
 			}	// /else
 
-			if (rate == "") {
-				$("#rate").after('<p class="text-danger">Rate field is required</p>');
+			if (price_list_rate == "") {
+				$("#rate").after('<p class="text-danger">Price List Rate is required</p>');
 				$('#rate').closest('.form-group').addClass('has-error');
 			} else {
 				// remov error text field
@@ -88,56 +67,25 @@ $(document).ready(function () {
 				$("#rate").closest('.form-group').addClass('has-success');
 			}	// /else
 
-			if (brandName == "") {
-				$("#brandName").after('<p class="text-danger">Brand Name field is required</p>');
-				$('#brandName').closest('.form-group').addClass('has-error');
-			} else {
-				// remov error text field
-				$("#brandName").find('.text-danger').remove();
-				// success out for form 
-				$("#brandName").closest('.form-group').addClass('has-success');
-			}	// /else
-
-			if (categoryName == "") {
-				$("#categoryName").after('<p class="text-danger">Category Name field is required</p>');
-				$('#categoryName').closest('.form-group').addClass('has-error');
-			} else {
-				// remov error text field
-				$("#categoryName").find('.text-danger').remove();
-				// success out for form 
-				$("#categoryName").closest('.form-group').addClass('has-success');
-			}	// /else
-
-			if (productStatus == "") {
-				$("#productStatus").after('<p class="text-danger">Product Status field is required</p>');
-				$('#productStatus').closest('.form-group').addClass('has-error');
-			} else {
-				// remov error text field
-				$("#productStatus").find('.text-danger').remove();
-				// success out for form 
-				$("#productStatus").closest('.form-group').addClass('has-success');
-			}	// /else
-
-			if (productImage && productName && quantity && rate && brandName && categoryName && productStatus) {
+			if (item && price_list && price_list_rate) {
 				// submit loading button
-				$("#createProductBtn").button('loading');
+				$("#btnCreatePriceList").button('loading');
 
 				var form = $(this);
-				var formData = new FormData(this);
-
+				console.log(formData);
 				$.ajax({
 					url: form.attr('action'),
 					type: form.attr('method'),
-					data: formData,
+					data: form.serialize(),
 					dataType: 'json',
 					cache: false,
 					contentType: false,
 					processData: false,
 					success: function (response) {
 
-						if (response.success == true) {
+						if (response.success) {
 							// submit loading button
-							$("#createProductBtn").button('reset');
+							$("#btnCreatePriceList").button('reset');
 
 							$("#submitProductForm")[0].reset();
 

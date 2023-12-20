@@ -44,7 +44,7 @@
 <div class="modal fade" id="addItemPriceModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-    	<form class="form-horizontal" id="submitProductForm" action="php_action/createItemPrice.php" method="POST" enctype="multipart/form-data">
+    	<form class="form-horizontal" id="frmItemPrice" action="php_action/createItemPrice.php" method="POST" enctype="multipart/form-data">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> New Item Price</h4>
@@ -58,7 +58,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Item Code: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <select class="form-control" id="brandName" name="brandName">
+				      <select class="form-control" id="cmbItem" name="brandName">
 				      	<option value="">~~SELECT~~</option>
 				      	<?php 
 				      	$sql = "SELECT product_id, product_name FROM product WHERE active = 1";
@@ -76,7 +76,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Price List: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <select class="form-control" id="brandName" name="brandName">
+				      <select class="form-control" id="cmbPriceList" name="brandName">
 				      	<?php 
 				      	$sql = "SELECT name, price_list_name FROM `tabPrice List` ORDER BY price_list_name ASC";
 							$result = $connect->query($sql);
@@ -93,7 +93,7 @@
 	        	<label for="rate" class="col-sm-3 control-label">Rate: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="number" step="0.01"  class="form-control" id="rate" placeholder="0.00" name="rate" autocomplete="off">
+				      <input type="number" step="0.01"  class="form-control" id="txtRate" placeholder="0.00" name="rate" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->				        	         	       
         	        
@@ -102,7 +102,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createProductBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
+	        <button type="submit" class="btn btn-primary" id="btnCreatePriceList" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
 	      </div> <!-- /modal-footer -->	      
      	</form> <!-- /.form -->	     
     </div> <!-- /modal-content -->    
@@ -302,6 +302,6 @@
 <!-- /categories brand -->
 
 
-<script src="custom/js/product.js"></script>
+<script src="custom/js/item-price.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>

@@ -6,11 +6,12 @@ $valid['success'] = array('success' => false, 'messages' => array());
 
 if($_POST) {	
 
-	$brandName = $_POST['brandName'];
-  $brandStatus = $_POST['brandStatus']; 
+	$item = $_POST['cmbItem'];
+	$price_list = $_POST['cmbPriceList'];
+	$price_list_rate = $_POST['txtRate'];
 
-	$sql = "INSERT INTO `tabitem price`(`modified_by`, `owner`, `docstatus`, `item_code`, `item_name`, `price_list_rate`) VALUES
-	 ('$brandName', '$brandStatus', 1)";
+	$sql = "INSERT INTO `tabitem price`(`item_code`, `price_list`, `price_list_rate`) VALUES
+	 ('$item', '$price_list', '$price_list_rate')";
 
 	if($connect->query($sql) === TRUE) {
 	 	$valid['success'] = true;
